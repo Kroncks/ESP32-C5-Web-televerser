@@ -1,0 +1,15 @@
+{
+  "name": "ESP32-C5 Blink",
+  "version": "1.0.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32-C5",
+      "parts": [
+        {
+          "path": "merged-blink.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

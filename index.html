@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>ESP32 Web Flasher</title>
+
+  <script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js?module">
+</script>
+</head>
+
+<body>
+  <h2>Flasher une ESP32</h2>
+
+  <label for="project-select">Projet :</label>
+  <select id="project-select"></select>
+
+  <br><br>
+
+  <esp-web-install-button id="install-button">
+    <button slot="activate">Connecter et téléverser</button>
+  </esp-web-install-button>
+
+  <script>
+    const select = document.getElementById("project-select");
+    const installButton = document.getElementById("install-button");
+
+    async function loadProjects() {
+      const response = await fetch("projects.json");
+      const projects = await response.json();
+
+      select.innerHTML = "";
+
+      for (const project of projects) {
+        const option = document.createElement("option");
+        option.value = `projets/${project}/manifest.json`;
+        option.textContent = project;
+        select.appendChild(option);
+      }
+
+      installButton.setAttribute("manifest", select.value);
+    }
+
+    select.addEventListener("change", () => {
+      installButton.setAttribute("manifest", select.value);
+    });
+
+    loadProjects();
+  </script>
+</body>
+</html>
