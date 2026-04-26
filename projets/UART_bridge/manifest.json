@@ -1,0 +1,15 @@
+{
+  "name": "UART_bridge",
+  "version": "1.0.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32-C5",
+      "parts": [
+        {
+          "path": "merged-UART_bridge.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
